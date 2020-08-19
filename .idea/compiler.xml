@@ -9,5 +9,9 @@
         <module name="lesson-1-network-chat" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="geek-spring-part-one-18" target="8" />
+      <module name="lesson-1-network-chat" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

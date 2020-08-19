@@ -27,8 +27,8 @@ public class ChatServer {
     public static void main(String[] args) {
         AuthService authService;
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/network_chat",
-                    "root", "root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/network_chat?useUnicode=true&serverTimezone=UTC",
+                    "root", "waagh!");
             UserRepository userRepository = new UserRepository(conn);
             if (userRepository.getAllUsers().size() == 0) {
                 userRepository.insert(new User(-1, "ivan", "123"));
