@@ -1,6 +1,7 @@
 package ru.geekbrains.server;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.geekbrains.server.auth.AuthService;
@@ -11,9 +12,10 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
+@ComponentScan("ru.geekbrains.server")
 public class SpringConfig {
 
-    @Bean
+/*    @Bean
     public ChatServer chatServer(AuthService authService) {
         return new ChatServer(authService);
     }
@@ -26,7 +28,7 @@ public class SpringConfig {
     @Bean
     public UserRepository userRepository(DataSource dataSource) throws SQLException {
         return new UserRepository(dataSource);
-    }
+    }*/
 
     @Bean
     public DataSource dataSource() {
