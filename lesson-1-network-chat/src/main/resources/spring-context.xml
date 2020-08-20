@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="chatServer" class="ru.geekbrains.server.ChatServer">
-        <constructor-arg ref="authService"/>
-    </bean>
+    <context:component-scan base-package="ru.geekbrains.server"/>
 
-    <bean id="authService" class="ru.geekbrains.server.auth.AuthServiceJdbcImpl">
-        <constructor-arg ref="userRepository"/>
-    </bean>
+<!--    <bean id="chatServer" class="ru.geekbrains.server.ChatServer">-->
+<!--        <constructor-arg ref="authService"/>-->
+<!--    </bean>-->
 
-    <bean id="userRepository" class="ru.geekbrains.server.persistance.UserRepository">
-        <constructor-arg ref="dataSource"/>
-    </bean>
+<!--    <bean id="authService" class="ru.geekbrains.server.auth.AuthServiceJdbcImpl">-->
+<!--        <constructor-arg ref="userRepository"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="userRepository" class="ru.geekbrains.server.persistance.UserRepository">-->
+<!--        <constructor-arg ref="dataSource"/>-->
+<!--    </bean>-->
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
