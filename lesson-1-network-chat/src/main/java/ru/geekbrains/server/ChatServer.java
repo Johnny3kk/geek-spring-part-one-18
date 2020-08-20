@@ -24,7 +24,7 @@ public class ChatServer {
     private AuthService authService;
     private Map<String, ClientHandler> clientHandlerMap = Collections.synchronizedMap(new HashMap<>());
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         AuthService authService;
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/network_chat?useUnicode=true&serverTimezone=UTC",
@@ -43,13 +43,13 @@ public class ChatServer {
 
         ChatServer chatServer = new ChatServer(authService);
         chatServer.start(7777);
-    }
+    }*/
 
     public ChatServer(AuthService authService) {
         this.authService = authService;
     }
 
-    private void start(int port) {
+    public void start(int port) {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Server started!");
             while (true) {

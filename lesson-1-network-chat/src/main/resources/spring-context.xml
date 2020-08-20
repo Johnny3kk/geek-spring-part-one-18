@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="chatServer" class="ru.geekbrains.server.ChatServer">
+        <constructor-arg ref="authService"/>
+    </bean>
+
+    <bean id="authService" class="ru.geekbrains.server.auth.AuthServiceJdbcImpl">
+        <constructor-arg ref="userRepository"/>
+    </bean>
+
+    <bean id="userRepository" class="ru.geekbrains.server.persistance.UserRepository">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="username" value="root"/>
+        <property name="password" value="waagh!"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/network_chat?useUnicode=true&amp;serverTimezone=UTC"/>
+    </bean>
+</beans>
