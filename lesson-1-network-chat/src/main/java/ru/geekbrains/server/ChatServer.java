@@ -27,27 +27,6 @@ public class ChatServer {
     private AuthService authService;
     private Map<String, ClientHandler> clientHandlerMap = Collections.synchronizedMap(new HashMap<>());
 
-    /*public static void main(String[] args) {
-        AuthService authService;
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/network_chat?useUnicode=true&serverTimezone=UTC",
-                    "root", "waagh!");
-            UserRepository userRepository = new UserRepository(conn);
-            if (userRepository.getAllUsers().size() == 0) {
-                userRepository.insert(new User(-1, "ivan", "123"));
-                userRepository.insert(new User(-1, "petr", "345"));
-                userRepository.insert(new User(-1, "julia", "789"));
-            }
-            authService = new AuthServiceJdbcImpl(userRepository);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        ChatServer chatServer = new ChatServer(authService);
-        chatServer.start(7777);
-    }*/
-
     @Autowired
     public ChatServer(AuthService authService) {
         this.authService = authService;
