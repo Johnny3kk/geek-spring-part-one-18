@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>lesson-1-network-chat</module>
+        <module>lesson-2-spring-mvc</module>
     </modules>
 
     <properties>

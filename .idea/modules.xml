@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/geek-spring-part-one-18.iml" filepath="$PROJECT_DIR$/geek-spring-part-one-18.iml" />
       <module fileurl="file://$PROJECT_DIR$/lesson-1-network-chat/lesson-1-network-chat.iml" filepath="$PROJECT_DIR$/lesson-1-network-chat/lesson-1-network-chat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson-2-spring-mvc/lesson-2-spring-mvc.iml" filepath="$PROJECT_DIR$/lesson-2-spring-mvc/lesson-2-spring-mvc.iml" />
     </modules>
   </component>
 </project>
