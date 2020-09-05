@@ -6,14 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="lesson-2-spring-mvc" />
+        <module name="lesson-3-hibernate" />
         <module name="lesson-1-network-chat" />
+        <module name="lesson-2-spring-mvc" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="geek-spring-part-one-18" target="8" />
       <module name="lesson-1-network-chat" target="8" />
       <module name="lesson-2-spring-mvc" target="8" />
+      <module name="lesson-3-hibernate" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
