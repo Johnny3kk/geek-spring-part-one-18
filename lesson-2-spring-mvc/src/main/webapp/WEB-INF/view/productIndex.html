@@ -35,7 +35,7 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <a class="btn btn-primary" th:href = "@{/product/add}">Add Product</a>
+            <a class="btn btn-primary" th:href = "@{product/add}">Add Product</a>
         </div>
 
         <div class="col-12">
@@ -48,7 +48,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="product : ${products}">
+                <tr th:each="product : ${productIndex}">
                     <th scope="row" th:text="${product.id}">1</th>
                     <td th:text="${product.title}">Product title</td>
                     <td th:text="${product.cost}">Product cost</td>

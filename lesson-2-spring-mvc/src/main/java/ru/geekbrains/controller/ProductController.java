@@ -28,10 +28,16 @@ public class ProductController {
         return "productIndex";
     }
 
-    @PostMapping("/add")
-    public String addProduct(Product prod) {
-
-//        return "redirect:product/";
+    @GetMapping("/add")
+    public String addProduct(Model model) {
+        Product product = new Product();
+        model.addAttribute("product", product);
         return "product";
+    }
+
+    @PostMapping("/insert")
+    public String insertProduct(Model model, Product product) throws SQLException {
+        repo.insert(product);
+        return "redirect:/product";
     }
 }
