@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.geekbrains.persistance.Product;
 import ru.geekbrains.persistance.ProductRepo;
+import ru.geekbrains.persistance.User;
+
+import java.sql.SQLException;
+import java.util.List;
 
 
 @Controller
@@ -18,14 +22,16 @@ public class ProductController {
     private ProductRepo repo;
 
     @GetMapping
-    public String allProducts(Model model) {
-        model.addAttribute("products", repo.getAllProducts());
-        return "products";
+    public String allProducts(Model model) throws SQLException {
+        List<Product> allProducts = repo.getAllProducts();
+        model.addAttribute("productIndex", allProducts);
+        return "productIndex";
     }
 
     @PostMapping("/add")
     public String addProduct(Product prod) {
-        repo.list.add(prod);
-        return "redirect:product/";
+
+//        return "redirect:product/";
+        return "product";
     }
 }
