@@ -8,6 +8,9 @@ public class Product {
     private String title;
     private BigDecimal cost;
 
+    public Product() {
+    }
+
     public Product(int id, String title, BigDecimal cost) {
         this.id = id;
         this.title = title;
