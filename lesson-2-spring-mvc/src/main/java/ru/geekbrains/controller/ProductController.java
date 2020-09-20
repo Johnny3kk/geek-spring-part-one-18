@@ -1,5 +1,7 @@
 package ru.geekbrains.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +19,14 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
+    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
-    private ProductRepo repo;
+    private ProductRepo productRepo;
 
     @GetMapping
     public String allProducts(Model model) throws SQLException {
-        List<Product> allProducts = repo.getAllProducts();
+        List<Product> allProducts = productRepo.findAll();
         model.addAttribute("productIndex", allProducts);
         return "productIndex";
     }
@@ -36,7 +40,7 @@ public class ProductController {
 
     @PostMapping("/insert")
     public String insertProduct(Model model, Product product) throws SQLException {
-        repo.insert(product);
+        productRepo.save(product);
         return "redirect:/product";
     }
 }

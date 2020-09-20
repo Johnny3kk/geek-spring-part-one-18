@@ -38,11 +38,6 @@ public class PersistConfig {
     private String password;
 
     @Bean
-    public ProductRepo productRepo(DataSource dataSource) throws SQLException {
-        return new ProductRepo(dataSource);
-    }
-
-    @Bean
     public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName(driverClassName);
