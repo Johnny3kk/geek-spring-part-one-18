@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.geekbrains.persist.entity.Product;
 import ru.geekbrains.persist.repo.ProductRepo;
 
@@ -25,8 +26,16 @@ public class ProductController {
     private ProductRepo productRepo;
 
     @GetMapping
-    public String allProducts(Model model) throws SQLException {
-        List<Product> allProducts = productRepo.findAll();
+    public String allProducts(Model model, @RequestParam(value = "name", required = false) String name) {
+
+        logger.info("Filtering by name: {}", name);
+
+        List<Product> allProducts;
+       if(name == null || name.isEmpty()) {
+           allProducts = productRepo.findAll();
+       } else {
+           allProducts = productRepo.findByTitleLike("%" + name + "%");
+       }
         model.addAttribute("productIndex", allProducts);
         return "productIndex";
     }
@@ -39,7 +48,7 @@ public class ProductController {
     }
 
     @PostMapping("/insert")
-    public String insertProduct(Model model, Product product) throws SQLException {
+    public String insertProduct(Model model, Product product) {
         productRepo.save(product);
         return "redirect:/product";
     }
