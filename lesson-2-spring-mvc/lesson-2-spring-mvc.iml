@@ -72,5 +72,6 @@
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.3.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:5.2.8.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.9.6" level="project" />
+    <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
   </component>
 </module>

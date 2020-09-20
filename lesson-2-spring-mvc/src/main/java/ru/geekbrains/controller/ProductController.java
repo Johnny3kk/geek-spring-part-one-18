@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.geekbrains.persist.entity.Product;
-import ru.geekbrains.persist.ProductRepo;
+import ru.geekbrains.persist.repo.ProductRepo;
 
 import java.sql.SQLException;
 import java.util.List;

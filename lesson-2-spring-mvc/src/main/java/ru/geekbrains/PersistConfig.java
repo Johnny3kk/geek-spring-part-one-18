@@ -4,12 +4,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import ru.geekbrains.persist.ProductRepo;
-import ru.geekbrains.persist.UserRepository;
+import ru.geekbrains.persist.repo.ProductRepo;
+import ru.geekbrains.persist.repo.UserRepository;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -18,6 +19,7 @@ import java.util.Properties;
 
 @Configuration
 @PropertySource("classpath:application.properties")
+@EnableJpaRepositories("ru.geekbrains.persist.repo")
 public class PersistConfig {
 
     @Value("${database.driver.class}")
@@ -34,11 +36,6 @@ public class PersistConfig {
 
     @Value("${database.password}")
     private String password;
-
-    @Bean
-    public UserRepository userRepository() throws SQLException {
-        return new UserRepository();
-    }
 
     @Bean
     public ProductRepo productRepo(DataSource dataSource) throws SQLException {
