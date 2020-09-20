@@ -1,10 +1,22 @@
-package ru.geekbrains.persistance;
+package ru.geekbrains.persist.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column
     private String login;
+
+    @Column
     private String password;
+
+    public User() {}
 
     public User(int id, String login, String password) {
         this.id = id;

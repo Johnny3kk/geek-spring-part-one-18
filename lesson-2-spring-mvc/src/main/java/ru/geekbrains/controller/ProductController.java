@@ -6,9 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.geekbrains.persistance.Product;
-import ru.geekbrains.persistance.ProductRepo;
-import ru.geekbrains.persistance.User;
+import ru.geekbrains.persist.entity.Product;
+import ru.geekbrains.persist.ProductRepo;
 
 import java.sql.SQLException;
 import java.util.List;

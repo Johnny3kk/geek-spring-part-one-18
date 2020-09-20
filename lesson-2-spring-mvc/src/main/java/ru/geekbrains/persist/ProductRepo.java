@@ -1,7 +1,8 @@
-package ru.geekbrains.persistance;
+package ru.geekbrains.persist;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ru.geekbrains.persist.entity.Product;
 
 import javax.sql.DataSource;
 import java.sql.*;
