@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.geekbrains.persist.entity.Product;
 import ru.geekbrains.persist.repo.ProductRepo;
 
-import java.sql.SQLException;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -26,18 +26,33 @@ public class ProductController {
     private ProductRepo productRepo;
 
     @GetMapping
-    public String allProducts(Model model, @RequestParam(value = "name", required = false) String name) {
+    public String allProducts(Model model, @RequestParam(value = "name", required = false) String name,
+                              @RequestParam(value = "minCost", required = false) BigDecimal minCost,
+                              @RequestParam(value = "maxCost", required = false) BigDecimal maxCost) {
 
-        logger.info("Filtering by name: {}", name);
+        logger.info("Filtering by name: {} minCost: {} maxCost {}", name, minCost, maxCost);
 
         List<Product> allProducts;
-       if(name == null || name.isEmpty()) {
+       if((name == null || name.isEmpty()) && (minCost == null) && (maxCost == null)) {
            allProducts = productRepo.findAll();
-       } else {
+       } else if ((minCost == null) && (maxCost == null)) {
            allProducts = productRepo.findByTitleLike("%" + name + "%");
+       } else if ((name == null || name.isEmpty()) && (maxCost == null)) {
+           allProducts = productRepo.queryBySmaller(minCost);
+       } else if ((name == null || name.isEmpty()) && (minCost == null)) {
+           allProducts = productRepo.queryByBigger(maxCost);
+       } else if (name == null || name.isEmpty()) {
+           allProducts = productRepo.queryByScope(minCost, maxCost);
+       } else if (maxCost == null) {
+           allProducts = productRepo.queryByTitleAndMin("%" + name + "%", minCost);
+       } else if (minCost == null) {
+           allProducts = productRepo.queryByTitleAndMax("%" + name + "%", maxCost);
+       } else {
+           allProducts = productRepo.queryByTitleAndScope("%" + name + "%", minCost, maxCost);
        }
-        model.addAttribute("productIndex", allProducts);
-        return "productIndex";
+
+       model.addAttribute("productIndex", allProducts);
+       return "productIndex";
     }
 
     @GetMapping("/add")

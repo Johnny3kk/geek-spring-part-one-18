@@ -40,8 +40,12 @@
 
         <div class="col-12 mt-3">
             <form>
-                <label>Name</label>
+                <label>Title</label>
                 <input type="text" name="name" id="name" th:value="${param.name}">
+                <label>Min Cost</label>
+                <input type="text" name="minCost" id="minCost" th:value="${param.minCost}">
+                <label>Max Cost</label>
+                <input type="text" name="maxCost" id="maxCost" th:value="${param.maxCost}"><br>
                 <button class="btn btn-primary" type="submit">Filter</button>
             </form>
         </div>
