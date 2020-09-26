@@ -3,12 +3,14 @@ package ru.geekbrains.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.persist.entity.User;
 import ru.geekbrains.persist.repo.UserRepository;
+import ru.geekbrains.persist.repo.UserSpecification;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -26,14 +28,23 @@ public class UserController {
     public String allUsers(Model model, @RequestParam(value = "name", required = false) String name) {
         logger.info("Filtering by name: {}", name);
 
-        List<User> allUsers;
-        if(name == null || name.isEmpty()) {
-            allUsers = userRepository.findAll();
-        } else {
-            allUsers = userRepository.findByLoginLike("%" + name + "%");
+        Specification<User> spec = UserSpecification.trueLiteral();
+
+        if (name != null && !name.isEmpty()) {
+            spec = spec.and(UserSpecification.loginLike(name));
         }
-        model.addAttribute("users", allUsers);
+
+        model.addAttribute("users", userRepository.findAll(spec));
         return "users";
+
+//        List<User> allUsers;
+//        if(name == null || name.isEmpty()) {
+//            allUsers = userRepository.findAll();
+//        } else {
+//            allUsers = userRepository.findByLoginLike("%" + name + "%");
+//        }
+//        model.addAttribute("users", allUsers);
+//        return "users";
     }
 
     @GetMapping("/{id}")
