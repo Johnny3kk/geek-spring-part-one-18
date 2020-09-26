@@ -56,7 +56,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user : ${users}">
+                <tr th:each="user : ${usersPage.content}">
                     <th scope="row" th:text="${user.id}">1</th>
                     <td th:text="${user.login}">User login</td>
                     <td>
@@ -66,6 +66,25 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="col-12">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{user(page=${usersPage.number}, size=${usersPage.size}, name=${name})}">Previous</a>
+                    </li>
+                    <li th:each="num: ${#numbers.sequence(1, usersPage.totalPages)}"
+                        class="page-item"
+                        th:classappend="${num == usersPage.number + 1} ? 'active'"
+                    >
+                        <a class="page-link" th:text="${num}" th:href="@{user(page=${num}, size=${usersPage.size}, name=${name})}">1</a>
+                    </li>
+                    <li class="page-item" th>
+                        <a class="page-link" th:href="@{user(page=${usersPage.number + 2}, size=${usersPage.size}, name=${name})}">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

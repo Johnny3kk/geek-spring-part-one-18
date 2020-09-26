@@ -3,6 +3,8 @@ package ru.geekbrains.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import ru.geekbrains.persist.repo.UserSpecification;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
@@ -25,8 +28,12 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping
-    public String allUsers(Model model, @RequestParam(value = "name", required = false) String name) {
+    public String allUsers(Model model, @RequestParam(value = "name", required = false) String name,
+                                        @RequestParam("page")Optional<Integer> page,
+                                        @RequestParam("size") Optional<Integer> size) {
         logger.info("Filtering by name: {}", name);
+
+        PageRequest pageRequest = PageRequest.of(page.orElse(1) - 1, size.orElse(5), Sort.Direction.ASC, "login");
 
         Specification<User> spec = UserSpecification.trueLiteral();
 
@@ -34,7 +41,7 @@ public class UserController {
             spec = spec.and(UserSpecification.loginLike(name));
         }
 
-        model.addAttribute("users", userRepository.findAll(spec));
+        model.addAttribute("usersPage", userRepository.findAll(spec, pageRequest));
         return "users";
 
 //        List<User> allUsers;
