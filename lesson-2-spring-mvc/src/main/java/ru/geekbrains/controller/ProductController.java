@@ -8,11 +8,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.persist.entity.Product;
+import ru.geekbrains.persist.entity.User;
 import ru.geekbrains.persist.repo.ProductRepo;
 import ru.geekbrains.persist.repo.ProductSpecification;
 
@@ -61,9 +59,6 @@ public class ProductController {
         }
 
         model.addAttribute("productsPage", productRepo.findAll(spec, pageRequest));
-
-
-
         return "productIndex";
 
       /*  List<Product> allProducts;
@@ -100,5 +95,12 @@ public class ProductController {
     public String insertProduct(Model model, Product product) {
         productRepo.save(product);
         return "redirect:/product";
+    }
+
+    @GetMapping("/{id}")
+    public String editProduct(@PathVariable("id") Integer id, Model model) {
+        Product product = productRepo.findById(id).get();
+        model.addAttribute("product", product);
+        return "product";
     }
 }
