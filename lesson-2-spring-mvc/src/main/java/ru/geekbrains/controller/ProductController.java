@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.geekbrains.persist.entity.Product;
-import ru.geekbrains.persist.entity.User;
 import ru.geekbrains.persist.repo.ProductRepo;
 import ru.geekbrains.persist.repo.ProductSpecification;
-import ru.geekbrains.persist.repo.UserSpecification;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -48,6 +46,18 @@ public class ProductController {
 
         if (name != null && !name.isEmpty()) {
             spec = spec.and(ProductSpecification.titleLike(name));
+        }
+
+        if (minCost != null && maxCost == null) {
+            spec = spec.and(ProductSpecification.smallerOrEqual(minCost));
+        }
+
+        if (maxCost != null && minCost == null) {
+            spec = spec.and(ProductSpecification.greaterOrEqual(maxCost));
+        }
+
+        if (maxCost != null && minCost != null) {
+            spec = spec.and(ProductSpecification.between(minCost, maxCost));
         }
 
         model.addAttribute("productsPage", productRepo.findAll(spec, pageRequest));
