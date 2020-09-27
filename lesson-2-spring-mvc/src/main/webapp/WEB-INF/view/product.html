@@ -36,6 +36,7 @@
     <div class="row py-2">
         <div class="col-12">
             <form th:action="@{/product/insert}" th:object="${product}" method="post">
+                <input th:type="hidden" th:field="*{id}">
                 <div class="form-group">
                     <label>Title</label>
                     <input type="text" class="form-control" th:field="*{title}" placeholder="Enter title">
