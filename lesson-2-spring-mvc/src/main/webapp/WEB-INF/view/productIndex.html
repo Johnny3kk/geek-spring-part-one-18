@@ -77,16 +77,16 @@
             <nav aria-label="...">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" th:href="@{product(page=${productsPage.number}, size=${productsPage.size}, name=${name})}">Previous</a>
+                        <a class="page-link" th:href="@{product(page=${productsPage.number}, size=${productsPage.size}, name=${param.name}, minCost=${param.minCost}, maxCost=${param.maxCost})}">Previous</a>
                     </li>
                     <li th:each="num: ${#numbers.sequence(1, productsPage.totalPages)}"
                         class="page-item"
                         th:classappend="${num == productsPage.number + 1} ? 'active'"
                     >
-                        <a class="page-link" th:text="${num}" th:href="@{product(page=${num}, size=${productsPage.size}, name=${name})}">1</a>
+                        <a class="page-link" th:text="${num}" th:href="@{product(page=${num}, size=${productsPage.size}, name=${param.name}, minCost=${param.minCost}, maxCost=${param.maxCost})}">1</a>
                     </li>
                     <li class="page-item" th>
-                        <a class="page-link" th:href="@{product(page=${productsPage.number + 2}, size=${productsPage.size}, name=${name})}">Next</a>
+                        <a class="page-link" th:href="@{product(page=${productsPage.number + 2}, size=${productsPage.size}, name=${param.name}, minCost=${param.minCost}, maxCost=${param.maxCost})}">Next</a>
                     </li>
                 </ul>
             </nav>
