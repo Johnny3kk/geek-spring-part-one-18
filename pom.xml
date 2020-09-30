@@ -12,6 +12,7 @@
         <module>lesson-1-network-chat</module>
         <module>lesson-2-spring-mvc</module>
         <module>lesson-3-hibernate</module>
+        <module>lesson-6-spring-boot</module>
     </modules>
 
     <properties>

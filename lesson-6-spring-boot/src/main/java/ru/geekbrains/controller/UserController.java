@@ -80,7 +80,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ModelAndView notFoundExceptionHandler(NotFoundException exception) {
         ModelAndView modelAndView = new ModelAndView("not_found");
-        modelAndView.getModel().put("someAttr", "someValue");
+//        modelAndView.getModel().put("someAttr", "someValue");
         return modelAndView;
     }
 
