@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row py-2">
+        <div class="col-12">
+            <form>
+                <input type="hidden">
+                <div class="form-group">
+                    <label for="login">Name</label>
+                    <input type="text" id="login" ng-model="user.login" class="form-control" placeholder="Enter login">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" ng-model="user.password" class="form-control" placeholder="Enter password">
+                </div>
+                <button type="submit" ng-click="submit(user)" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
