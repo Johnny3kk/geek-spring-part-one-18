@@ -12,4 +12,8 @@ public final class UserSpecification {
     public static Specification<User> loginLike(String login) {
         return (root, query, builder) -> builder.like(root.get("login"), "%" + login + "%");
     }
+
+    public static Specification<User> emailLike(String email) {
+        return (root, query, builder) -> builder.like(root.get("email"), "%" + email + "%");
+    }
 }

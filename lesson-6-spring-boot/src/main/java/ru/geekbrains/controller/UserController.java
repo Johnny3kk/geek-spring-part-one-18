@@ -29,22 +29,26 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping
-    public String allUsers(Model model, @RequestParam(value = "name", required = false) String name,
-                                        @RequestParam("page")Optional<Integer> page,
-                                        @RequestParam("size") Optional<Integer> size) {
-        logger.info("Filtering by name: {}", name);
+    public String allUsers(Model model,
+                           @RequestParam(value = "name", required = false) String name,
+                           @RequestParam(value = "email", required = false) String email,
+                           @RequestParam("page") Optional<Integer> page,
+                           @RequestParam("size") Optional<Integer> size) {
+        logger.info("Filtering by name: {} email: {}", name, email);
 
-        PageRequest pageRequest = PageRequest.of(page.orElse(1) - 1, size.orElse(5), Sort.Direction.ASC, "login");
+        PageRequest pageRequest = PageRequest.of(page.orElse(1) - 1, size.orElse(5));
 
         Specification<User> spec = UserSpecification.trueLiteral();
 
         if (name != null && !name.isEmpty()) {
             spec = spec.and(UserSpecification.loginLike(name));
         }
+        if (email != null && !email.isEmpty()) {
+            spec = spec.and(UserSpecification.emailLike(email));
+        }
 
         model.addAttribute("usersPage", userRepository.findAll(spec, pageRequest));
         return "users";
-
     }
 
     @GetMapping("/{id}")
