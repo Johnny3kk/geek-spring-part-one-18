@@ -1,4 +1,5 @@
 GET http://localhost:8080/mvc-app/api/v1/user/all
+Authorization: Basic mem_admin_user password
 
 ###
 
