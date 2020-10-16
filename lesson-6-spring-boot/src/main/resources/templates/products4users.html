@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <!-- Required meta tags -->
@@ -41,9 +42,6 @@
 
 <div class="container">
     <div class="row py-2">
-        <div class="col-12">
-            <a class="btn btn-primary" th:href = "@{product/add}">Add Product</a>
-        </div>
 
         <div class="col-12 mt-3">
             <form>
@@ -71,10 +69,6 @@
                     <th scope="row" th:text="${product.id}">1</th>
                     <td th:text="${product.title}">Product title</td>
                     <td th:text="${product.cost}">Product cost</td>
-                    <td>
-                        <a class="btn btn-success" th:href="@{/product/{id}(id = ${product.id})}"><i class="fas fa-edit"></i></a>
-<!--                        <a class="btn btn-danger" href="#"><i class="far fa-trash-alt"></i></a>-->
-                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -84,16 +78,16 @@
             <nav aria-label="...">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" th:href="@{product(page=${productsPage.number}, size=${productsPage.size}, name=${param.name}, minCost=${param.minCost}, maxCost=${param.maxCost})}">Previous</a>
+                        <a class="page-link" th:href="@{my_products(page=${productsPage.number}, size=${productsPage.size}, name=${param.name}, minCost=${param.minCost}, maxCost=${param.maxCost})}">Previous</a>
                     </li>
                     <li th:each="num: ${#numbers.sequence(1, productsPage.totalPages)}"
                         class="page-item"
                         th:classappend="${num == productsPage.number + 1} ? 'active'"
                     >
-                        <a class="page-link" th:text="${num}" th:href="@{product(page=${num}, size=${productsPage.size}, name=${param.name}, minCost=${param.minCost}, maxCost=${param.maxCost})}">1</a>
+                        <a class="page-link" th:text="${num}" th:href="@{my_products(page=${num}, size=${productsPage.size}, name=${param.name}, minCost=${param.minCost}, maxCost=${param.maxCost})}">1</a>
                     </li>
                     <li class="page-item" th>
-                        <a class="page-link" th:href="@{product(page=${productsPage.number + 2}, size=${productsPage.size}, name=${param.name}, minCost=${param.minCost}, maxCost=${param.maxCost})}">Next</a>
+                        <a class="page-link" th:href="@{my_products(page=${productsPage.number + 2}, size=${productsPage.size}, name=${param.name}, minCost=${param.minCost}, maxCost=${param.maxCost})}">Next</a>
                     </li>
                 </ul>
             </nav>

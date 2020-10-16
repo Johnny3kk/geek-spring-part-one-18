@@ -21,7 +21,7 @@ import java.util.Optional;
 @RequestMapping("/product")
 public class ProductController {
 
-    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final static Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
     private ProductRepository productRepository;

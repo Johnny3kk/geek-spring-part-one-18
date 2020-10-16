@@ -23,10 +23,10 @@ public class SecurityConfiguration {
 
     @Autowired
     public void authConfigure(AuthenticationManagerBuilder auth,
-                              UserDetailsService userDetailsService,
+                              UserDetailsService userAuthService,
                               PasswordEncoder passwordEncoder) throws Exception {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
+        provider.setUserDetailsService(userAuthService);
         provider.setPasswordEncoder(passwordEncoder);
         auth.authenticationProvider(provider);
         auth.inMemoryAuthentication()
@@ -71,6 +71,8 @@ public class SecurityConfiguration {
             http.authorizeRequests()
                     .antMatchers("/").anonymous()
                     .antMatchers("/user/**").hasRole("ADMIN")
+                    .antMatchers("/product/**").hasRole("MANAGER")
+                    .antMatchers("/my_products/**").hasRole("USER")
                     .and()
                     .formLogin();
         }
