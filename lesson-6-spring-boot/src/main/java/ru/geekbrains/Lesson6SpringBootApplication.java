@@ -23,13 +23,5 @@ public class Lesson6SpringBootApplication {
         SpringApplication.run(Lesson6SpringBootApplication.class, args);
     }
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @EventListener(ApplicationReadyEvent.class)
-    public void doSomething() {
-        User user = userRepository.findById(1).get();
-        System.out.println(user);
-    }
 
 }
