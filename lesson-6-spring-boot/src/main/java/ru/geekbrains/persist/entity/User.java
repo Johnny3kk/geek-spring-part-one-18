@@ -3,6 +3,8 @@ package ru.geekbrains.persist.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -25,6 +27,13 @@ public class User {
 
     @Transient
     private String matchingPassword;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
 
     public User() {
     }
@@ -65,5 +74,22 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }
