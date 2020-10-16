@@ -71,7 +71,7 @@ public class SecurityConfiguration {
             http.authorizeRequests()
                     .antMatchers("/").anonymous()
                     .antMatchers("/user/**").hasRole("ADMIN")
-                    .antMatchers("/product/**").hasRole("MANAGER")
+                    .antMatchers("/product/**").hasAnyRole("ADMIN", "MANAGER")
                     .antMatchers("/my_products/**").hasRole("USER")
                     .and()
                     .formLogin();
