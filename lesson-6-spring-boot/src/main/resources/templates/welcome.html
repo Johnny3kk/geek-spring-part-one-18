@@ -29,12 +29,19 @@
                 <a class="nav-link" href="#">List</a>
             </li>
         </ul>
+
+        <form th:action="@{/login}" method="post">
+            <button class="btn btn-primary">
+                Login
+            </button>
+
+        </form>
     </div>
 </nav>
 
 <div class="container">
     <div class="row py-2">
-       <p>Welcome!</p>
+       <h1>Welcome!</h1>
     </div>
 </div>
 
