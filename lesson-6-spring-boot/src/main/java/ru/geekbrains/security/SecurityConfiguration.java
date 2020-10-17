@@ -74,7 +74,8 @@ public class SecurityConfiguration {
                     .antMatchers("/product/**").hasAnyRole("ADMIN", "MANAGER")
                     .antMatchers("/my_products/**").hasRole("USER")
                     .and()
-                    .formLogin();
+                    .formLogin()
+                        .loginPage("/login");
         }
     }
 }
