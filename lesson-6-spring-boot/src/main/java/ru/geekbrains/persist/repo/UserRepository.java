@@ -6,8 +6,11 @@ import org.springframework.stereotype.Repository;
 import ru.geekbrains.persist.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecificationExecutor<User> {
+
+    Optional<User> findByLogin(String login);
 
 }
